@@ -68,7 +68,7 @@ export class PropertiesParser {
 
     // maps preserve insertion order
     const sortedProperties = new Map();
-    keyOrder.forEach(x => sortedProperties.set(x, properties.get(x)));
+    keyOrder.forEach((x) => sortedProperties.set(x, properties.get(x)));
 
     return {
       title,
@@ -109,11 +109,12 @@ export class PropertiesParser {
         return value.last_edited_time;
       case "last_edited_by":
         return value.last_edited_by.name;
+      case "checkbox":
+        return value.checkbox.valueOf();
       case "formula":
       case "rollup":
       case "people":
       case "files":
-      case "checkbox":
         const notSupported = "unsupported property type: " + value.type;
         context.warn(notSupported);
         debug(notSupported + "\n%O", { context, value });
